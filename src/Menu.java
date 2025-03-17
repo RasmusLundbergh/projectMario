@@ -1,2 +1,12 @@
+import java.util.Scanner;
+
 public class Menu {
+
+    static void showmenu() {
+        Scanner scanner = new Scanner(System.in);
+        int input = scanner.nextInt();
+        if (input == 1){
+            System.out.println("1. Vesuvio: tomatsauce, ost, skinke og oregano ..... 57,- " + "\n2. Amerikaner: tomatsauce, ost, oksefars og oregano ...... 53,-" + "\n3. Cacciatore: tomatsauce, ost, pepperoni og oregano ........ 57,-" + "\n4. Carbona: tomatsauce, ost, kødsauce, spaghetti, cocktailpølser og oregano ..... 63,-" + "\n5. Dennis: tomatsauce, ost, skinke, pepperoni, cocktailpølser og oregano ......... 65,-" + "\n6. Bertil: tomatsauce, ost, bacon og oregano ......... 57,-" + "\n7. Silvia: tomatsauce, ost, pepperoni, rød peber, løg, oliven og oregano ........... 61,-" + "\n8. Victoria: tomatsauce, ost, skinke, ananas, champignon, løg og oregano ........ 61,-" + "\n9. Toronto: tomatsauce, ost, skinke, bacon, kebab, chili og oregano ...... 61,-" + "\n10. Capricciosa: tomatsauce, ost, skinke, champignon og oregano ...... 61,-" + "\n11. Hawaii: tomatsauce, ost, skinke, ananas og oregano ...... 61,-" + "\n12. Le Blissola: tomatsauce, ost, skinke, rejer og oregano ...... 61,-" + "\n13. Venezia: tomatsauce, ost, skinke, bacon og oregano ...... 61,-" + "\n14. Mafia: tomatsauce, ost, pepperoni, bacon, løg og oregano ....... 61,-" + "\n15. margherita: tomatsovs, ost, oregano...... 56,-" + "\n16. kartoffel: mascarpone, kartoffel, basil, løg........67,-" + "\n17. italiano: tomatsovs, ost, peberfrugt, pepperoni, løg...... 64,-" + "\n18. speciale: tomatsovs, ost, kylling, ananas, oliven......70,-" + "\n19. parken: mascarpone, pepperoni, bacon......62,-" + "\n20. kebab: tomatsovs, ost, kebab, løg........64,-" + "\n21. venizio: tomatsauce, kylling, bacon, peberfrugt........65,-" + "\n22. forte: tomatsauce, ost, chili, ham, spinat.........67,-" + "\n23. carne: tomatsovs, ost, pølse, skinke, bacon........71,-" + "\n24. picante: tomatsovs, ost, kød, artistokker, chili.........68,-" + "\n25. amor: tomatsovs, ost, skinke, chilli, champignon........67,-" + "\n26. mario special: tomatsovs, ost, kebab, salad, dressing m agurk......73,-" + "\n27. antonelli: tomatsovs, ost, skinke, ananas, champignon.......65,-" + "\n28. nørrebro: tomatsovs, ost, kylling, peberfrugt, løg........62,-" + "\n29. vegetar: tomatsovs, ost, champignon, løg, oliven.......64,-" + "\n30. filip: tomatsovs, ost, pepperoni, skinke, peberfrugt, løg.........66,-");
+        }
+    }
 }
