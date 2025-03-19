@@ -34,7 +34,10 @@ public class Main {
                 System.out.println("Indtast afhentningstid");
                 int inputAfhentningstidspunkt = scanner.nextInt();
 
-                Bestilling ordre = new Bestilling(inputBestilling, inputAfhentningstidspunkt);
+                System.out.println("indtast pris");
+                int inputPris = scanner.nextInt();
+
+                Bestilling ordre = new Bestilling(inputBestilling, inputAfhentningstidspunkt,inputPris);
 
                 nyBestillingsListe.tilføjBestilling(ordre);
 
