@@ -1,2 +1,2 @@
-public class OrdrerOversigt {
+public class OrdreOversigt {
 }
