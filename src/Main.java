@@ -3,7 +3,7 @@
 public class Main {
     public static void main(String[] args) {
 
-        System.out.println("press 1 to show menu");
-        Menu.showmenu();
+        Menu menu = new Menu();
+        menu.visMenu();
     }
 }

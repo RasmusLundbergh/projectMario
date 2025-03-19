@@ -1,12 +1,56 @@
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Menu {
+    private List<Pizza> pizzaer;
 
-    static void showmenu() {
-        Scanner scanner = new Scanner(System.in);
-        int input = scanner.nextInt();
-        if (input == 1){
-            System.out.println("1. Vesuvio: tomatsauce, ost, skinke og oregano ..... 57,- " + "\n2. Amerikaner: tomatsauce, ost, oksefars og oregano ...... 53,-" + "\n3. Cacciatore: tomatsauce, ost, pepperoni og oregano ........ 57,-" + "\n4. Carbona: tomatsauce, ost, kødsauce, spaghetti, cocktailpølser og oregano ..... 63,-" + "\n5. Dennis: tomatsauce, ost, skinke, pepperoni, cocktailpølser og oregano ......... 65,-" + "\n6. Bertil: tomatsauce, ost, bacon og oregano ......... 57,-" + "\n7. Silvia: tomatsauce, ost, pepperoni, rød peber, løg, oliven og oregano ........... 61,-" + "\n8. Victoria: tomatsauce, ost, skinke, ananas, champignon, løg og oregano ........ 61,-" + "\n9. Toronto: tomatsauce, ost, skinke, bacon, kebab, chili og oregano ...... 61,-" + "\n10. Capricciosa: tomatsauce, ost, skinke, champignon og oregano ...... 61,-" + "\n11. Hawaii: tomatsauce, ost, skinke, ananas og oregano ...... 61,-" + "\n12. Le Blissola: tomatsauce, ost, skinke, rejer og oregano ...... 61,-" + "\n13. Venezia: tomatsauce, ost, skinke, bacon og oregano ...... 61,-" + "\n14. Mafia: tomatsauce, ost, pepperoni, bacon, løg og oregano ....... 61,-" + "\n15. margherita: tomatsovs, ost, oregano...... 56,-" + "\n16. kartoffel: mascarpone, kartoffel, basil, løg........67,-" + "\n17. italiano: tomatsovs, ost, peberfrugt, pepperoni, løg...... 64,-" + "\n18. speciale: tomatsovs, ost, kylling, ananas, oliven......70,-" + "\n19. parken: mascarpone, pepperoni, bacon......62,-" + "\n20. kebab: tomatsovs, ost, kebab, løg........64,-" + "\n21. venizio: tomatsauce, kylling, bacon, peberfrugt........65,-" + "\n22. forte: tomatsauce, ost, chili, ham, spinat.........67,-" + "\n23. carne: tomatsovs, ost, pølse, skinke, bacon........71,-" + "\n24. picante: tomatsovs, ost, kød, artistokker, chili.........68,-" + "\n25. amor: tomatsovs, ost, skinke, chilli, champignon........67,-" + "\n26. mario special: tomatsovs, ost, kebab, salad, dressing m agurk......73,-" + "\n27. antonelli: tomatsovs, ost, skinke, ananas, champignon.......65,-" + "\n28. nørrebro: tomatsovs, ost, kylling, peberfrugt, løg........62,-" + "\n29. vegetar: tomatsovs, ost, champignon, løg, oliven.......64,-" + "\n30. filip: tomatsovs, ost, pepperoni, skinke, peberfrugt, løg.........66,-");
+    public Menu() {
+        pizzaer = new ArrayList<>();
+        pizzaer.add(new Pizza(1, "Vesuvio", 57, "Tomatsauce, ost, skinke, oregano"));
+        pizzaer.add(new Pizza(2, "Amerikaner", 53, "Tomatsauce, ost, oksefars, oregano"));
+        pizzaer.add(new Pizza(3, "Cacciatore", 57, "Tomatsauce, ost, pepperoni, oregano"));
+        pizzaer.add(new Pizza(4, "Carbona", 63, "Tomatsauce, ost, kødsauce, spaghetti, cocktailpølser, oregano"));
+        pizzaer.add(new Pizza(5, "Dennis", 65, "Tomatsauce, ost, skinke, pepperoni, cocktailpølser, oregano"));
+        pizzaer.add(new Pizza(6, "Bertil", 57, "Tomatsauce, ost, bacon, oregano"));
+        pizzaer.add(new Pizza(7, "Silvia", 61, "Tomatsauce, ost, pepperoni, rød peber, løg, oliven, oregano"));
+        pizzaer.add(new Pizza(8, "Victoria", 61, "Tomatsauce, ost, skinke, ananas, champignon, løg, oregano"));
+        pizzaer.add(new Pizza(9, "Toronto", 61, "Tomatsauce, ost, skinke, bacon, kebab, chili, oregano"));
+        pizzaer.add(new Pizza(10, "Capricciosa", 61, "Tomatsauce, ost, skinke, champignon, oregano"));
+        pizzaer.add(new Pizza(11, "Hawaii", 61, "Tomatsauce, ost, skinke, ananas, oregano"));
+        pizzaer.add(new Pizza(12, "Le Blissola", 61, "Tomatsauce, ost, skinke, rejer, oregano"));
+        pizzaer.add(new Pizza(13, "Venezia", 61, "Tomatsauce, ost, skinke, bacon, oregano"));
+        pizzaer.add(new Pizza(14, "Mafia", 61, "Tomatsauce, ost, pepperoni, bacon, løg, oregano"));
+        pizzaer.add(new Pizza(15, "Margherita", 56, "Tomatsauce, ost, oregano"));
+        pizzaer.add(new Pizza(16, "Kartoffel", 67, "Mascarpone, kartoffel, basil, løg"));
+        pizzaer.add(new Pizza(17, "Italiano", 64, "Tomatsauce, ost, peberfrugt, pepperoni, løg"));
+        pizzaer.add(new Pizza(18, "Speciale", 70, "Tomatsauce, ost, kylling, ananas, oliven"));
+        pizzaer.add(new Pizza(19, "Parken", 62, "Mascarpone, pepperoni, bacon"));
+        pizzaer.add(new Pizza(20, "Kebab", 64, "Tomatsauce, ost, kebab, løg"));
+        pizzaer.add(new Pizza(21, "Venizio", 65, "Tomatsauce, kylling, bacon, peberfrugt"));
+        pizzaer.add(new Pizza(22, "Forte", 67, "Tomatsauce, ost, chili, ham, spinat"));
+        pizzaer.add(new Pizza(23, "Carne", 71, "Tomatsauce, ost, pølse, skinke, bacon"));
+        pizzaer.add(new Pizza(24, "Picante", 68, "Tomatsauce, ost, kød, artiskokker, chili"));
+        pizzaer.add(new Pizza(25, "Amor", 67, "Tomatsauce, ost, skinke, chili, champignon"));
+        pizzaer.add(new Pizza(26, "Mario special", 73, "Tomatsauce, ost, kebab, salat, dressing m. agurk"));
+        pizzaer.add(new Pizza(27, "Antonelli", 65, "Tomatsauce, ost, skinke, ananas, champignon"));
+        pizzaer.add(new Pizza(28, "Nørrebro", 62, "Tomatsauce, ost, kylling, peberfrugt, løg"));
+        pizzaer.add(new Pizza(29, "Vegetar", 64, "Tomatsauce, ost, champignon, løg, oliven"));
+        pizzaer.add(new Pizza(30, "Filip", 66, "Tomatsauce, ost, pepperoni, skinke, peberfrugt, løg"));
+    }
+
+    public void visMenu() {
+        System.out.println("---- MENU ----");
+        for (Pizza pizza : pizzaer) {
+            System.out.println(pizza);
         }
+    }
+
+    public Pizza getPizza(int nummer) {
+        for (Pizza pizza : pizzaer) {
+            if (pizza.getNummer() == nummer) {
+                return pizza;
+            }
+        }
+        return null;
     }
 }
