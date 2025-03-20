@@ -1,55 +1,41 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 public class Bestilling {
 
-    private String pizza;
-    private int afhentningstid;
-    private ArrayList<Bestilling> bestillingsListe;
+    private List<Pizza> pizzas;
+    private LocalDateTime afhentningsTidspunkt;
 
-    public Bestilling() {
-        bestillingsListe = new ArrayList<>();
+    public Bestilling(LocalDateTime afhentningsTidspunkt) {
+        this.pizzas = new ArrayList<>();
+        this.afhentningsTidspunkt = afhentningsTidspunkt;
     }
 
-    public Bestilling (String pizza,int afhentningstid) {
-        this.pizza = pizza;
-        this.afhentningstid = afhentningstid;
-        bestillingsListe = new ArrayList<>();
+    public void tilføjPizza (int pizzaNumber,String note) {
+        pizzas.add(new Pizza(pizzaNumber, note));
+    }
+    public LocalDateTime getAfhentningsTidspunkt(){
+        return afhentningsTidspunkt;
+    }
+    public List<Pizza> getPizzas() {
+        return pizzas;
     }
 
-    public void tilføjBestilling(Bestilling b) {
-        bestillingsListe.add(b);
-    }
-
-    public void visBestilling() {
-        System.out.println("Bestilling: " + this.pizza + ", Afhentningstid: " + this.afhentningstid + " min");
-    }
-
-    public void visBestillinger() {
-        for (int i = 0; i < bestillingsListe.size(); i++) {
-            bestillingsListe.get(i).visBestilling();
+    @Override
+    public String toString() {
+        StringBuilder ordreDetaljer = new StringBuilder();
+        ordreDetaljer.append("Afhentningstidspunkt: ").append(afhentningsTidspunkt).append("\n");
+        for (Pizza pizza : pizzas) {
+            ordreDetaljer.append(pizza).append("\n");
         }
+        return ordreDetaljer.toString();
     }
-
-    public String getPizza() {
-        return pizza;
-    }
-
-    public void setPizza(String pizza) {
-        this.pizza = pizza;
-    }
-
-    public int getAfhentningstid() {
-        return afhentningstid;
-    }
-
-    public void setAfhentningstid(int afhentningstid) {
-        this.afhentningstid = afhentningstid;
-    }
-
-    public ArrayList<Bestilling> getBestillingsListe() {
-        return bestillingsListe;
-    }
-    public String toString(){
-        return "Bestilling: " + this.pizza + "Afhentningstid: " + this.afhentningstid + "Min";
-    }
+    public static Comparator<Bestilling> AfhentingsTidspunktComparator = new Comparator<Bestilling>() {
+        @Override
+        public int compare(Bestilling o1, Bestilling o2) {
+            return o1.getAfhentningsTidspunkt().compareTo(o2.getAfhentningsTidspunkt());
+        }
+    };
 }

@@ -1,9 +1,13 @@
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        Bestilling nyBestillingsListe = new Bestilling();
+        PriorityQueue<Bestilling> ordersQueue = new PriorityQueue<>(Bestilling.AfhentingsTidspunktComparator);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         Scanner scanner = new Scanner(System.in);
 
         boolean programmetSkalKøre = true;
@@ -31,19 +35,44 @@ public class Main {
 
                 scanner.nextLine();
 
-                System.out.println("Indtast bestilling");
-                String inputBestilling = scanner.nextLine();
+                System.out.println("Indtast afhentningstidspunkt (Format: yyyy-MM-dd HH:mm");
+                String afhentningsTidspunktString = scanner.nextLine();
+                LocalDateTime afhentningsTidspunkt = LocalDateTime.parse(afhentningsTidspunktString, formatter);
 
-                System.out.println("Indtast afhentningstid");
-                int inputAfhentningstidspunkt = scanner.nextInt();
+                Bestilling ordre = new Bestilling(afhentningsTidspunkt);
 
-                Bestilling ordre = new Bestilling(inputBestilling, inputAfhentningstidspunkt);
-                nyBestillingsListe.tilføjBestilling(ordre);
+                boolean tilføjPizzas = true;
+                while (tilføjPizzas) {
+                    System.out.println("indtast pizza nummer (fx. 1 for Vesuvio, 2 for Amerikaner");
+                    int pizzaNumber = scanner.nextInt();
+                    scanner.nextLine();
+
+                    System.out.println("Indtast en note for pizzaen (valgfrit)");
+                    String note = scanner.nextLine();
+
+                    ordre.tilføjPizza(pizzaNumber, note);
+
+                    System.out.println("Vil du tilføje en pizza til denne ordre? (ja/nej):");
+                    String response = scanner.nextLine();
+                    if (response.equalsIgnoreCase("Nej")){
+                        tilføjPizzas = false;
+                    }
+                }
+
+                ordersQueue.offer(ordre);
+                System.out.println("Ordren er blevet tilføjet.");
 
             }
             // Bruger valg 3
             else if (brugerValg == 3) {
-                nyBestillingsListe.visBestillinger();
+                if (ordersQueue.isEmpty()){
+                    System.out.println("Ingen ordre er blevet lavet endnu.");
+                } else {
+                    System.out.println("Alle ordrer i rækkefølge:");
+                    for (Bestilling ordre : ordersQueue){
+                        System.out.println(ordre);
+                    }
+                }
             }
             // Bruger valg 4
             else if (brugerValg == 4) {
