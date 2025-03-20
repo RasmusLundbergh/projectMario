@@ -12,7 +12,31 @@ public class Menu {
         pizzaMenu.add(new Pizza(3, "Cacciatore", 57, "Tomatsauce, ost, pepperoni, oregano"));
         pizzaMenu.add(new Pizza(4, "Carbona", 63, "Tomatsauce, ost, kødsauce, spaghetti, cocktailpølser, oregano"));
         pizzaMenu.add(new Pizza(5, "Dennis", 65, "Tomatsauce, ost, skinke, pepperoni, cocktailpølser, oregano"));
-
+        pizzaMenu.add(new Pizza(6, "Bertil", 57, "Tomatsauce, ost, bacon, oregano"));
+        pizzaMenu.add(new Pizza(7, "Silvia", 61, "Tomatsauce, ost, pepperoni, rød peber, løg, oliven, oregano"));
+        pizzaMenu.add(new Pizza(8, "Victoria", 61, "Tomatsauce, ost, skinke, ananas, champignon, løg, oregano"));
+        pizzaMenu.add(new Pizza(9, "Toronto", 61, "Tomatsauce, ost, skinke, bacon, kebab, chili, oregano"));
+        pizzaMenu.add(new Pizza(10, "Capricciosa", 61, "Tomatsauce, ost, skinke, champignon, oregano"));
+        pizzaMenu.add(new Pizza(11, "Hawaii", 61, "Tomatsauce, ost, skinke, ananas, oregano"));
+        pizzaMenu.add(new Pizza(12, "Le Blissola", 61, "Tomatsauce, ost, skinke, rejer, oregano"));
+        pizzaMenu.add(new Pizza(13, "Venezia", 61, "Tomatsauce, ost, skinke, bacon, oregano"));
+        pizzaMenu.add(new Pizza(14, "Mafia", 61, "Tomatsauce, ost, pepperoni, bacon, løg, oregano"));
+        pizzaMenu.add(new Pizza(15, "Margherita", 56, "Tomatsovs, ost, oregano"));
+        pizzaMenu.add(new Pizza(16, "Kartoffel", 67, "Mascarpone, kartoffel, basil, løg"));
+        pizzaMenu.add(new Pizza(17, "Italiano", 64, "Tomatsovs, ost, peberfrugt, pepperoni, løg"));
+        pizzaMenu.add(new Pizza(18, "Speciale", 70, "Tomatsovs, ost, kylling, ananas, oliven"));
+        pizzaMenu.add(new Pizza(19, "Parken", 62, "Mascarpone, pepperoni, bacon"));
+        pizzaMenu.add(new Pizza(20, "Kebab", 64, "Tomatsovs, ost, kebab, løg"));
+        pizzaMenu.add(new Pizza(21, "Venizio", 65, "Tomatsauce, kylling, bacon, peberfrugt"));
+        pizzaMenu.add(new Pizza(22, "Forte", 67, "Tomatsauce, ost, chili, ham, spinat"));
+        pizzaMenu.add(new Pizza(23, "Carne", 71, "Tomatsovs, ost, pølse, skinke, bacon"));
+        pizzaMenu.add(new Pizza(24, "Picante", 68, "Tomatsovs, ost, kød, artiskokker, chili"));
+        pizzaMenu.add(new Pizza(25, "Amor", 67, "Tomatsovs, ost, skinke, chili, champignon"));
+        pizzaMenu.add(new Pizza(26, "Mario special", 73, "Tomatsovs, ost, kebab, salat, dressing m. agurk"));
+        pizzaMenu.add(new Pizza(27, "Antonelli", 65, "Tomatsovs, ost, skinke, ananas, champignon"));
+        pizzaMenu.add(new Pizza(28, "Nørrebro", 62, "Tomatsovs, ost, kylling, peberfrugt, løg"));
+        pizzaMenu.add(new Pizza(29, "Vegetar", 64, "Tomatsovs, ost, champignon, løg, oliven"));
+        pizzaMenu.add(new Pizza(30, "Filip", 66, "Tomatsovs, ost, pepperoni, skinke, peberfrugt, løg"));
     }
 
     public void visHovedMenu() {
@@ -22,21 +46,28 @@ public class Menu {
             System.out.println("1. Opret ny ordre");
             System.out.println("2. Se menukortet");
             System.out.println("3. Se aktive ordrer");
-            System.out.println("4. Afslut program");
+            System.out.println("4. Se afsluttede ordrer");
+            System.out.println("5. Afslut program");
             System.out.print("Vælg en mulighed: ");
 
-            int valg = scanner.nextInt();
-            scanner.nextLine(); // Ryd scanner
+            if (scanner.hasNextInt()) {
+                int valg = scanner.nextInt();
+                scanner.nextLine();
 
-            switch (valg) {
-                case 1 -> opretOrdre();
-                case 2 -> visMenu();
-                case 3 -> visAktiveOrdrer();
-                case 4 -> {
-                    System.out.println("Programmet afsluttes...");
-                    kører = false;
+                switch (valg) {
+                    case 1 -> opretOrdre();
+                    case 2 -> visMenu();
+                    case 3 -> visAktiveOrdrer();
+                    case 4 -> visAfsluttedeOrdrer();
+                    case 5 -> {
+                        System.out.println("Programmet afsluttes...");
+                        kører = false;
+                    }
+                    default -> System.out.println("Ugyldigt valg, prøv igen.");
                 }
-                default -> System.out.println("Ugyldigt valg, prøv igen.");
+            } else {
+                System.out.println("Ugyldigt input, prøv igen.");
+                scanner.nextLine();
             }
         }
     }
@@ -76,7 +107,7 @@ public class Menu {
                 }
             } else {
                 System.out.println("Ugyldigt input. Indtast venligst et tal.");
-                scanner.next();
+                scanner.nextLine();
             }
         }
 
@@ -102,5 +133,10 @@ public class Menu {
                 System.out.println(ordre);
             }
         }
+    }
+
+    private void visAfsluttedeOrdrer() {
+        System.out.println("\n--- Afsluttede ordrer ---");
+        System.out.println("Denne funktion er ikke implementeret endnu.");
     }
 }
