@@ -1,8 +1,6 @@
 import org.w3c.dom.ls.LSOutput;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,19 +29,28 @@ public class Main {
 
                 scanner.nextLine();
 
-                System.out.println("Indtast bestilling");
-                String inputBestilling = scanner.nextLine();
+                System.out.println("hvilken pizza kunne du tænkte dig?");
+                System.out.println("(indtast nummeret på den pizza du gerne vil have)");
+                int pizzaNr = scanner.nextInt();
+
+                if (pizzaNr > 30 || pizzaNr < 1) {
+                    System.out.println("dette er desværre ikke en tilgængelig pizza");
+                    break;
+                }
+                System.out.println("hvor mange af den pizza kunne du tænkte dig?)");
+                int pizzacount = scanner.nextInt();
 
                 System.out.println("Indtast afhentningstid");
                 int inputAfhentningstidspunkt = scanner.nextInt();
 
-                Bestilling ordre = new Bestilling(inputBestilling, inputAfhentningstidspunkt);
+                Bestilling ordre = new Bestilling(pizzacount, pizzaNr, inputAfhentningstidspunkt);
 
                 nyBestillingsListe.tilføjBestilling(ordre);
 
             }
 
             else if (brugerValg == 3) {
+                nyBestillingsListe.sorterBestillinger();
                 nyBestillingsListe.visBestillinger();
             }
 
