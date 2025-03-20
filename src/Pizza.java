@@ -1,23 +1,15 @@
 public class Pizza {
-    private int pizzaNumber;  // Pizza nummer
-    private String note;      // Note for pizzaen
+    private int nummer;
+    private String note;
 
-    // Konstruktor til pizza
-    public Pizza(int pizzaNumber, String note) {
-        this.pizzaNumber = pizzaNumber;
+    public Pizza(int nummer, String note) {
+        this.nummer = nummer;
         this.note = note;
-    }
-
-    public int getPizzaNumber() {
-        return pizzaNumber;
-    }
-
-    public String getNote() {
-        return note;
     }
 
     @Override
     public String toString() {
-        return "Pizza Nr: " + pizzaNumber + ", Note: " + note;
+        return "Pizza " + nummer + (note.isEmpty() ? "" : " (Note: " + note + ")");
     }
 }
+

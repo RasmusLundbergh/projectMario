@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        PriorityQueue<Bestilling> ordersQueue = new PriorityQueue<>(Bestilling.AfhentingsTidspunktComparator);
+        PriorityQueue<Bestilling> ordersQueue = new PriorityQueue<>();  // No need for a Comparator now
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         Scanner scanner = new Scanner(System.in);
 
@@ -26,16 +26,13 @@ public class Main {
 
             int brugerValg = scanner.nextInt();
 
-            // Bruger valg 1
             if (brugerValg == 1) {
                 Menu.showmenu();
             }
-            // Bruger valg 2
             else if (brugerValg == 2) {
-
                 scanner.nextLine();
 
-                System.out.println("Indtast afhentningstidspunkt (Format: yyyy-MM-dd HH:mm");
+                System.out.println("Indtast afhentningstidspunkt (Format: yyyy-MM-dd HH:mm)");
                 String afhentningsTidspunktString = scanner.nextLine();
                 LocalDateTime afhentningsTidspunkt = LocalDateTime.parse(afhentningsTidspunktString, formatter);
 
@@ -43,7 +40,7 @@ public class Main {
 
                 boolean tilføjPizzas = true;
                 while (tilføjPizzas) {
-                    System.out.println("indtast pizza nummer (fx. 1 for Vesuvio, 2 for Amerikaner");
+                    System.out.println("Indtast pizza nummer (fx. 1 for Vesuvio, 2 for Amerikaner)");
                     int pizzaNumber = scanner.nextInt();
                     scanner.nextLine();
 
@@ -54,35 +51,31 @@ public class Main {
 
                     System.out.println("Vil du tilføje en pizza til denne ordre? (ja/nej):");
                     String response = scanner.nextLine();
-                    if (response.equalsIgnoreCase("Nej")){
+                    if (response.equalsIgnoreCase("nej")) {
                         tilføjPizzas = false;
                     }
                 }
 
                 ordersQueue.offer(ordre);
                 System.out.println("Ordren er blevet tilføjet.");
-
             }
-            // Bruger valg 3
             else if (brugerValg == 3) {
-                if (ordersQueue.isEmpty()){
+                if (ordersQueue.isEmpty()) {
                     System.out.println("Ingen ordre er blevet lavet endnu.");
                 } else {
-                    System.out.println("Alle ordrer i rækkefølge:");
-                    for (Bestilling ordre : ordersQueue){
-                        System.out.println(ordre);
+                    System.out.println("Alle ordrer i rækkefølge:\n");
+                    PriorityQueue<Bestilling>tempQueue = new PriorityQueue<>(ordersQueue);
+                    while (!tempQueue.isEmpty()) {
+                        System.out.println(tempQueue.poll());
                     }
                 }
             }
-            // Bruger valg 4
             else if (brugerValg == 4) {
                 System.out.println("Ikke implementeret endnu");
             }
-            // Bruger valg 5
             else if (brugerValg == 5) {
                 System.out.println("Ikke implementeret endnu");
             }
-            //Bruger valg 6
             else if (brugerValg == 6) {
                 programmetSkalKøre = false;
             } else {
