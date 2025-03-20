@@ -2,7 +2,7 @@ public class Pizza {
     private int nummer;
     private String navn;
     private double pris;
-    private String ingredienser; // Ny variabel til at gemme ingredienser
+    private String ingredienser;
 
     public Pizza(int nummer, String navn, double pris, String ingredienser) {
         this.nummer = nummer;
@@ -29,6 +29,6 @@ public class Pizza {
 
     @Override
     public String toString() {
-        return nummer + ". " + navn + " - " + pris + " kr.\n   Ingredienser: " + ingredienser;
+        return nummer + ". " + navn + " - " + pris + " kr.   Ingredienser: " + ingredienser;
     }
 }
