@@ -10,6 +10,7 @@ public class Menu {
     private Scanner scanner = new Scanner(System.in);
     private ArrayList<Pizza> pizzaMenu = new ArrayList<>();
     private ArrayList<Bestilling> aktiveOrdrer = new ArrayList<>();
+    private ArrayList<Bestilling> afsluttedeOrdre = new ArrayList<>();
 
     public Menu() {
         pizzaMenu.add(new Pizza(1, "Vesuvio", 57, "Tomatsauce, ost, skinke, oregano"));
@@ -139,13 +140,47 @@ public class Menu {
         if (aktiveOrdrer.isEmpty()) {
             System.out.println("Ingen aktive ordrer.");
         } else {
-            aktiveOrdrer.sort(Comparator.comparing(Bestilling::getAfhentningstidspunkt));
-            System.out.println(aktiveOrdrer);
+
+            boolean seAktiveOrdre = true;
+            while (seAktiveOrdre) {
+                if (aktiveOrdrer.isEmpty()) {
+                    System.out.println("Ingen aktive ordrer.");
+                    seAktiveOrdre = false;
+                } else {
+                    aktiveOrdrer.sort(Comparator.comparing(Bestilling::getAfhentningstidspunkt));
+                    System.out.println(aktiveOrdrer);
+                    System.out.println("\nIndtast ordrenummeret på den afsluttede ordre (eller 0 for at afslutte): ");
+                    int ordreNummer = scanner.nextInt();
+                    if (ordreNummer == 0) {
+                        seAktiveOrdre = false;
+                        visHovedMenu();
+                    } else {
+                        boolean foundAMatch = false;
+                        for (Bestilling ordre : aktiveOrdrer) {
+                            if (ordreNummer == ordre.getOrdreNummer()) {
+                                afsluttedeOrdre.add(ordre);
+                                aktiveOrdrer.remove(ordre);
+                                foundAMatch = true;
+                                break;
+                            }
+                        }
+                        if (!foundAMatch) {
+                            System.out.println("Der eksistere ingen ordre med ordrenummer " + ordreNummer);
+                        }
+                    }
+                }
+            }
         }
     }
 
+
     private void visAfsluttedeOrdrer() {
         System.out.println("\n--- Afsluttede ordrer ---");
-        System.out.println("Denne funktion er ikke implementeret endnu.");
+        if (afsluttedeOrdre.isEmpty()) {
+            System.out.println("Ingen afsluttede ordrer.");
+        } else {
+            afsluttedeOrdre.sort(Comparator.comparing(Bestilling::getAfhentningstidspunkt));
+            System.out.println(afsluttedeOrdre);
+        }
     }
 }
