@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Bestilling {
+public class Bestilling  {
 
     String pizza;
     int afhentningstid;
