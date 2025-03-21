@@ -1,5 +1,10 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class Menu {
     private Scanner scanner = new Scanner(System.in);
@@ -82,7 +87,12 @@ public class Menu {
     private void opretOrdre() {
         System.out.println("\n--- Opret ny ordre ---");
         System.out.print("Hvornår skal ordren være klar? (f.eks. 18:30): ");
-        String afhentningstidspunkt = scanner.nextLine();
+        String afhentningstidspunktString = scanner.nextLine();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime localTime = LocalTime.parse(afhentningstidspunktString, timeFormatter);
+        LocalDateTime localDateTime = LocalDateTime.of(LocalDate.now(), localTime);
+        Date afhentningstidspunkt = Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+
         Bestilling nyOrdre = new Bestilling(afhentningstidspunkt);
 
         boolean tilføjerPizza = true;
@@ -129,9 +139,8 @@ public class Menu {
         if (aktiveOrdrer.isEmpty()) {
             System.out.println("Ingen aktive ordrer.");
         } else {
-            for (Bestilling ordre : aktiveOrdrer) {
-                System.out.println(ordre);
-            }
+            aktiveOrdrer.sort(Comparator.comparing(Bestilling::getAfhentningstidspunkt));
+            System.out.println(aktiveOrdrer);
         }
     }
 
