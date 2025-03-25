@@ -1,58 +1,40 @@
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 
 public class Bestilling {
+    private static int ordreTæller = 1;
+    private int ordreNummer;
+    private ArrayList<Pizza> pizzaer;
+    private String afhentningstidspunkt;
 
-    private int pizza;
-    private double afhentningstid;
-    private int size;
-    ArrayList<Bestilling> bestillingsListe;
+    public Bestilling(String afhentningstidspunkt) {
+        this.ordreNummer = ordreTæller++;
+        this.pizzaer = new ArrayList<>();
+        this.afhentningstidspunkt = afhentningstidspunkt;
+    }
 
-    public Bestilling() {
-        bestillingsListe = new ArrayList<>();
-            }
+    public void tilføjPizza(Pizza pizza) {
+        pizzaer.add(pizza);
+    }
+
+    public int getOrdreNummer() {
+        return ordreNummer;
+    }
+
+    public ArrayList<Pizza> getPizzaer() {
+        return pizzaer;
+    }
+
+    public String getAfhentningstidspunkt() {
+        return afhentningstidspunkt;
+    }
 
 
-
-        public void sorter() {
-            //Collections.sort(bestillingsListe, new Comparator<Bestilling>());
-                //public int compare (Bestilling b1), (Bestilling b2) {
-            //return Integer.compare(b1.get, afhentningstid());
-            //    }
-
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Ordre #").append(ordreNummer).append("\nAfhentningstidspunkt: ").append(afhentningstidspunkt).append("\nPizzaer:\n");
+        for (Pizza pizza : pizzaer) {
+            sb.append(" - ").append(pizza.getNummer()).append(". ").append(pizza.getNavn()).append("\n");
         }
-    public void sorterBestillinger() {
-        Collections.sort(bestillingsListe, (b1, b2) -> Double.compare(b1.getAfhentningstid(), b2.getAfhentningstid()));
+        return sb.toString();
     }
-
-    public Bestilling (int size, int pizza, double afhentningstid) {
-        this.pizza = pizza;
-        this.afhentningstid = afhentningstid;
-        this.size = size;
-    }
-
-    public int getpizza() {
-        return pizza;
-    }
-    public double getAfhentningstid() {
-        return afhentningstid;
-    }
-
-    public void tilføjBestilling(Bestilling b) {
-        bestillingsListe.add(b);
-    }
-
-    public void visBestilling() {
-        System.out.println("bestilling: " + this.size + "x nr. " + this.pizza + ". Afhentningstid: " + this.afhentningstid);
-    }
-
-    public void visBestillinger() {
-        for (int i = 0; i < bestillingsListe.size(); i++) {
-            bestillingsListe.get(i).visBestilling();
-        }
-    }
-
-
-
 }
