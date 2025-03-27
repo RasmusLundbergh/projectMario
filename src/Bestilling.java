@@ -1,14 +1,12 @@
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
-public class Bestilling implements Comparable<Bestilling> {
+public class Bestilling {
     private static int ordreTæller = 1;
     private int ordreNummer;
     private ArrayList<Pizza> pizzaer;
-    private Date afhentningstidspunkt;
+    private String afhentningstidspunkt;
 
-    public Bestilling(Date afhentningstidspunkt) {
+    public Bestilling(String afhentningstidspunkt) {
         this.ordreNummer = ordreTæller++;
         this.pizzaer = new ArrayList<>();
         this.afhentningstidspunkt = afhentningstidspunkt;
@@ -26,24 +24,17 @@ public class Bestilling implements Comparable<Bestilling> {
         return pizzaer;
     }
 
-    public Date getAfhentningstidspunkt() {
+    public String getAfhentningstidspunkt() {
         return afhentningstidspunkt;
     }
 
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
-        String formattedTime = sdf.format(afhentningstidspunkt);
-        sb.append("Ordre #").append(ordreNummer).append("\nAfhentningstidspunkt: ").append(formattedTime).append("\nPizzaer:\n");
+        sb.append("Ordre #").append(ordreNummer).append("\nAfhentningstidspunkt: ").append(afhentningstidspunkt).append("\nPizzaer:\n");
         for (Pizza pizza : pizzaer) {
             sb.append(" - ").append(pizza.getNummer()).append(". ").append(pizza.getNavn()).append("\n");
         }
         return sb.toString();
-    }
-
-    @Override
-    public int compareTo(Bestilling o) {
-        return getAfhentningstidspunkt().compareTo(o.getAfhentningstidspunkt());
     }
 }
