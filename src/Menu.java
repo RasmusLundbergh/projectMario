@@ -1,16 +1,20 @@
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+import java.util.Date;
+import java.util.Comparator;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.*;
+import java.time.ZoneId;
 
 public class Menu {
     private Scanner scanner = new Scanner(System.in);
     private ArrayList<Pizza> pizzaMenu = new ArrayList<>();
     private ArrayList<Bestilling> aktiveOrdrer = new ArrayList<>();
     private ArrayList<Bestilling> afsluttedeOrdre = new ArrayList<>();
+    private Statistik statistik;
 
     public Menu() {
         pizzaMenu.add(new Pizza(1, "Vesuvio", 57, "Tomatsauce, ost, skinke, oregano"));
@@ -43,6 +47,9 @@ public class Menu {
         pizzaMenu.add(new Pizza(28, "Nørrebro", 62, "Tomatsovs, ost, kylling, peberfrugt, løg"));
         pizzaMenu.add(new Pizza(29, "Vegetar", 64, "Tomatsovs, ost, champignon, løg, oliven"));
         pizzaMenu.add(new Pizza(30, "Filip", 66, "Tomatsovs, ost, pepperoni, skinke, peberfrugt, løg"));
+
+        // Initialiser statistik objektet med pizzaMenu
+        statistik = new Statistik(pizzaMenu);
     }
 
     public void visHovedMenu() {
@@ -53,7 +60,8 @@ public class Menu {
             System.out.println("2. Se menukortet");
             System.out.println("3. Se aktive ordrer");
             System.out.println("4. Se afsluttede ordrer");
-            System.out.println("5. Afslut program");
+            System.out.println("5. Se salgsstatistik");
+            System.out.println("6. Afslut program");
             System.out.print("Vælg en mulighed: ");
 
             if (scanner.hasNextInt()) {
@@ -65,7 +73,8 @@ public class Menu {
                     case 2 -> visMenu();
                     case 3 -> visAktiveOrdrer();
                     case 4 -> visAfsluttedeOrdrer();
-                    case 5 -> {
+                    case 5 -> statistik.visStatistik(getAfsluttedeOrdre());  // Send afsluttede ordrer som parameter
+                    case 6 -> {
                         System.out.println("Programmet afsluttes...");
                         kører = false;
                     }
@@ -83,6 +92,15 @@ public class Menu {
         for (Pizza pizza : pizzaMenu) {
             System.out.println(pizza);
         }
+    }
+
+    private Pizza findPizza(int nummer) {
+        for (Pizza pizza : pizzaMenu) {
+            if (pizza.getNummer() == nummer) {
+                return pizza;
+            }
+        }
+        return null;
     }
 
     private void opretOrdre() {
@@ -126,21 +144,11 @@ public class Menu {
         System.out.println("Ordre oprettet:\n" + nyOrdre);
     }
 
-    private Pizza findPizza(int nummer) {
-        for (Pizza pizza : pizzaMenu) {
-            if (pizza.getNummer() == nummer) {
-                return pizza;
-            }
-        }
-        return null;
-    }
-
     private void visAktiveOrdrer() {
         System.out.println("\n--- Aktive ordrer ---");
         if (aktiveOrdrer.isEmpty()) {
             System.out.println("Ingen aktive ordrer.");
         } else {
-
             boolean seAktiveOrdre = true;
             while (seAktiveOrdre) {
                 if (aktiveOrdrer.isEmpty()) {
@@ -173,14 +181,17 @@ public class Menu {
         }
     }
 
-
     private void visAfsluttedeOrdrer() {
         System.out.println("\n--- Afsluttede ordrer ---");
         if (afsluttedeOrdre.isEmpty()) {
             System.out.println("Ingen afsluttede ordrer.");
         } else {
-            afsluttedeOrdre.sort(Comparator.comparing(Bestilling::getAfhentningstidspunkt));
             System.out.println(afsluttedeOrdre);
         }
     }
+
+    public ArrayList<Bestilling> getAfsluttedeOrdre() {
+        return afsluttedeOrdre;
+    }
 }
+

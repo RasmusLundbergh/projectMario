@@ -30,7 +30,6 @@ public class Bestilling implements Comparable<Bestilling> {
         return afhentningstidspunkt;
     }
 
-
     public String toString() {
         StringBuilder sb = new StringBuilder();
         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");

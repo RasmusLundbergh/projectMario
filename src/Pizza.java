@@ -32,3 +32,4 @@ public class Pizza {
         return nummer + ". " + navn + " - " + pris + " kr.   Ingredienser: " + ingredienser;
     }
 }
+
